@@ -1,0 +1,191 @@
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+
+// Definición de las diapositivas con su contenido, íconos y colores
+const slides = [
+  {
+    title: "¡Bienvenida a la presentación de los AEC! 👋",
+    content: "Este documento establece los Acuerdos Escolares de Convivencia (AEC) del Colegio Técnico Provincial 'Antonio Martín Marte'. Su propósito es fortalecer los vínculos de la comunidad educativa y organizar la convivencia desde una perspectiva democrática e inclusiva. ¡Presiona 'Comenzar' para iniciar!",
+    icon: (
+      <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+      </svg>
+    ),
+    bgColor: "bg-blue-50",
+    isStartSlide: true
+  },
+  {
+    title: "Marco Normativo 📜",
+    content: "Los AEC se basan en un sólido marco legal argentino, incluyendo la Ley de Educación Nacional N° 26.206, que promueve la convivencia democrática, y la Ley de Protección Integral de Niñas, Niños y Adolescentes N° 26.061. Estos acuerdos no son arbitrarios, sino que reflejan un compromiso con los derechos y la participación democrática.",
+    icon: (
+      <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 text-purple-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m-5 4H7a2 2 0 01-2-2v-4a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2h-2.5m-11-6v6" />
+      </svg>
+    ),
+    bgColor: "bg-purple-50"
+  },
+  {
+    title: "Pilares Fundamentales 🤝",
+    content: "La convivencia se fundamenta en valores institucionales como el **respeto**, la **solidaridad**, la **empatía**, la **colaboración** y la **responsabilidad**. Estos principios no son solo normas, sino una forma de vivir en comunidad que se construye a diario con el compromiso de cada uno.",
+    icon: (
+      <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.25v15.5m-7.75-7.75h15.5" />
+        <path d="M12 4.25v15.5m-7.75-7.75h15.5" stroke="none" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.25v15.5m-7.75-7.75h15.5" stroke="none" />
+        <circle cx="12" cy="12" r="9" stroke="currentColor" fill="none" />
+      </svg>
+    ),
+    bgColor: "bg-green-50"
+  },
+  {
+    title: "Derechos y Obligaciones ✅",
+    content: "Cada miembro de la comunidad educativa (estudiantes, docentes, familias) tiene derechos, como ser tratado con respeto o expresar sus ideas, y también obligaciones, como respetar a los demás y actuar conforme a su rol. Se busca un equilibrio para construir relaciones justas e inclusivas para todos.",
+    icon: (
+      <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+      </svg>
+    ),
+    bgColor: "bg-yellow-50"
+  },
+  {
+    title: "Límites del Acuerdo 🚫",
+    content: "El documento es claro en que no se puede ser objeto de acuerdo en situaciones de **abuso de poder**, **discriminación** (por género, origen, discapacidad, etc.) o **violencia** (física, verbal, psicológica). Estos son derechos que la institución debe garantizar y que no son negociables.",
+    icon: (
+      <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M18.364 5.636l-3.536 3.536m-1.414 1.414L8.636 18.364m2.828-2.828l3.536-3.536m-1.414-1.414L18.364 5.636m2.828 2.828l-3.536 3.536m1.414-1.414l-3.536-3.536m-2.828 2.828l-3.536-3.536m-1.414 1.414l3.536 3.536" />
+      </svg>
+    ),
+    bgColor: "bg-red-50"
+  },
+  {
+    title: "El Sentido de la Sanción ❤️‍🩹",
+    content: "La sanción no es un castigo, sino una herramienta pedagógica que busca generar aprendizajes. Su propósito es ayudar al estudiante a **reflexionar**, reconocer el impacto de sus acciones, asumir su responsabilidad y **reparar el daño causado**. Siempre tiene un carácter educativo y reparador, no punitivo.",
+    icon: (
+      <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 text-pink-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+    ),
+    bgColor: "bg-pink-50"
+  },
+  {
+    title: "Rol del Consejo de Convivencia 🧑‍⚖️",
+    content: "El Consejo Escolar de Convivencia (CEC) es el órgano clave para la aplicación de las normas y la resolución de conflictos graves. Está compuesto por directivos, docentes, estudiantes y familias, y su función es **asesorar** y promover el **diálogo** para la construcción de consensos.",
+    icon: (
+      <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 text-teal-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M17 20v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2m3-8a4 4 0 118 0 4 4 0 01-8 0z" />
+        <path d="M19 19H5a2 2 0 01-2-2V7a2 2 0 012-2h14a2 2 0 012 2v10a2 2 0 01-2 2z" stroke="currentColor" fill="none" />
+      </svg>
+    ),
+    bgColor: "bg-teal-50"
+  },
+  {
+    title: "Consideraciones Transversales 🌐",
+    content: "El AEC incorpora la **Educación Sexual Integral (ESI)** como un eje que debe guiar la reflexión sobre las prácticas cotidianas, y la **convivencia en entornos digitales** como un aspecto ineludible. El documento promueve una **pedagogía del cuidado**, superando lecturas lineales para construir estrategias en el marco de la complejidad.",
+    icon: (
+      <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 text-rose-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M18.364 5.636l-3.536 3.536m-1.414 1.414L8.636 18.364m2.828-2.828l3.536-3.536m-1.414-1.414L18.364 5.636m2.828 2.828l-3.536 3.536m1.414-1.414l-3.536-3.536m-2.828 2.828l-3.536-3.536m-1.414 1.414l3.536 3.536" />
+      </svg>
+    ),
+    bgColor: "bg-rose-50"
+  },
+];
+
+export default function App() {
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % slides.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+  };
+
+  const goToStart = () => {
+    setCurrentSlide(1);
+  };
+
+  const currentSlideData = slides[currentSlide];
+  const isStartSlide = currentSlideData.isStartSlide;
+  const progress = ((currentSlide - (isStartSlide ? 1 : 0)) / (slides.length - (isStartSlide ? 1 : 0))) * 100;
+
+  return (
+    <div className="min-h-screen font-sans bg-gray-50 text-gray-800 flex flex-col items-center justify-center p-4 antialiased">
+      <div className="w-full max-w-4xl bg-white rounded-3xl shadow-xl overflow-hidden transform transition-all duration-500 hover:scale-[1.01] border border-gray-200">
+        <div className="p-8">
+          <AnimatePresence initial={false}>
+            <motion.div
+              key={currentSlide}
+              className={`p-6 md:p-10 rounded-2xl ${currentSlideData.bgColor}`}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.5 }}
+            >
+              <div className="flex items-center justify-center mb-6">
+                <div className="w-20 h-20 rounded-full bg-white flex items-center justify-center shadow-md border border-gray-100">
+                  {currentSlideData.icon}
+                </div>
+              </div>
+              <h1 className="text-3xl md:text-4xl font-extrabold text-center text-gray-900 leading-tight mb-4">
+                {currentSlideData.title}
+              </h1>
+              <p className="text-base md:text-lg text-gray-700 text-center leading-relaxed">
+                {currentSlideData.content}
+              </p>
+              {isStartSlide && (
+                <div className="flex justify-center mt-8">
+                  <button
+                    onClick={goToStart}
+                    className="flex items-center space-x-2 px-6 py-3 bg-blue-600 text-white rounded-full shadow-lg hover:bg-blue-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  >
+                    <span>Comenzar</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                    </svg>
+                  </button>
+                </div>
+              )}
+            </motion.div>
+          </AnimatePresence>
+        </div>
+
+        {!isStartSlide && (
+          <div className="p-4 bg-gray-100 flex flex-col items-center rounded-b-3xl">
+            <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden mb-4">
+              <div
+                className="h-full bg-blue-500 transition-all duration-500 ease-out rounded-full"
+                style={{ width: `${progress}%` }}
+              ></div>
+            </div>
+            <div className="flex w-full items-center justify-between">
+              <button
+                onClick={prevSlide}
+                className="flex items-center space-x-2 px-4 py-2 bg-white text-gray-600 rounded-full shadow-md hover:bg-gray-200 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-300"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+                </svg>
+                <span className="hidden sm:inline">Anterior</span>
+              </button>
+
+              <span className="text-sm font-medium text-gray-500">
+                {currentSlide} de {slides.length - 1}
+              </span>
+
+              <button
+                onClick={nextSlide}
+                className="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-full shadow-md hover:bg-blue-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              >
+                <span className="hidden sm:inline">Siguiente</span>
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
