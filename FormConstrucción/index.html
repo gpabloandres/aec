@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario AEC - Colegio Antonio Martín Marte</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/qrious@4.0.2/dist/qrious.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8;
+        }
+        .container {
+            max-width: 800px;
+        }
+        .section-card {
+            background-color: white;
+            border-radius: 1.5rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            margin-bottom: 2rem;
+            padding: 2rem;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 p-8">
+
+    <div class="container mx-auto">
+        <header class="text-center mb-12">
+            <h1 class="text-4xl font-bold text-gray-800 mb-2">Acuerdos Escolares de Convivencia (AEC)</h1>
+            <p class="text-xl text-gray-600">Colegio Técnico Provincial "Antonio Martín Marte"</p>
+            <p class="text-md text-gray-500 mt-4">✍️ Tu opinión es fundamental para construir un mejor futuro juntos. ¡Gracias por tu participación!</p>
+        </header>
+
+        <!-- El formulario se envía ahora a través de un iframe para evitar la redirección -->
+        <form id="aec-form" class="space-y-8" method="POST" target="hidden-iframe">
+            <!-- Información del Participante -->
+            <div class="section-card">
+                <h2 class="text-2xl font-bold text-blue-600 mb-4 flex items-center">
+                    <span class="mr-2">🧑‍🏫</span> Datos de contacto
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label for="nombre" class="block text-gray-700 font-semibold mb-2">Nombre y Apellido</label>
+                        <input type="text" id="nombre" name="nombre" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                    </div>
+                    <div>
+                        <label for="rol" class="block text-gray-700 font-semibold mb-2">Rol en la comunidad</label>
+                        <select id="rol" name="rol" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                            <option value="">Selecciona tu rol</option>
+                            <option value="Docente">Docente</option>
+                            <option value="Familia">Familia</option>
+                            <option value="Estudiante">Estudiante</option>
+                            <option value="Personal no docente">Personal no docente</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección: Introducción -->
+            <div class="section-card">
+                <h2 class="text-2xl font-bold text-green-600 mb-4 flex items-center">
+                    <span class="mr-2">🌱</span> 1. Introducción
+                </h2>
+                <p class="text-gray-700 mb-4">El documento establece los AEC como una herramienta para fortalecer los vínculos desde una perspectiva democrática e inclusiva.
+                    ¿Qué opinas sobre este enfoque?
+                </p>
+                <textarea id="comentario_introduccion" name="comentario_introduccion" rows="4" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="Escribe tu opinión o sugerencia aquí..."></textarea>
+            </div>
+
+            <!-- Sección: Convivencia basada en el Respeto -->
+            <div class="section-card">
+                <h2 class="text-2xl font-bold text-yellow-600 mb-4 flex items-center">
+                    <span class="mr-2">🤝</span> 2. Convivencia, Respeto e Inclusión
+                </h2>
+                <p class="text-gray-700 mb-4">El documento promueve una convivencia construida colectivamente. ¿Qué podemos hacer para que la escucha activa y la resolución pacífica de conflictos sea parte de nuestro día a día?</p>
+                <textarea name="comentario_convivencia" rows="4" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-yellow-500" placeholder="Comparte tus ideas..."></textarea>
+            </div>
+
+            <!-- Sección: Derechos -->
+            <div class="section-card">
+                <h2 class="text-2xl font-bold text-purple-600 mb-4 flex items-center">
+                    <span class="mr-2">⚖️</span> 3. Derechos de la Comunidad
+                </h2>
+                <p class="text-gray-700 mb-4">Se mencionan derechos como ser tratado con respeto, expresar ideas y participar en decisiones. ¿Hay algún derecho que te parezca más importante o que crees que falta?</p>
+                <textarea name="comentario_derechos" rows="4" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500" placeholder="Escribe tus comentarios aquí..."></textarea>
+            </div>
+
+            <!-- Sección: Obligaciones -->
+            <div class="section-card">
+                <h2 class="text-2xl font-bold text-red-600 mb-4 flex items-center">
+                    <span class="mr-2">🎯</span> 4. Obligaciones de la Comunidad
+                </h2>
+                <p class="text-gray-700 mb-4">Se invita a la comunidad a respetar, escuchar y asumir sus roles. ¿Qué obligación consideras que es la más difícil de cumplir y cómo podemos apoyarnos mutuamente para lograrlo?</p>
+                <textarea name="comentario_obligaciones" rows="4" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-500" placeholder="Tu perspectiva es valiosa..."></textarea>
+            </div>
+
+            <!-- Sección: Sanciones -->
+            <div class="section-card">
+                <h2 class="text-2xl font-bold text-cyan-600 mb-4 flex items-center">
+                    <span class="mr-2">💡</span> 5. Las Sanciones
+                </h2>
+                <p class="text-gray-700 mb-4">El documento define las sanciones como herramientas pedagógicas, no como castigos. ¿Qué ejemplos concretos de sanciones pedagógicas se podrían implementar?</p>
+                <textarea name="comentario_sanciones" rows="4" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-cyan-500" placeholder="Comparte tus ideas aquí..."></textarea>
+            </div>
+
+            <!-- Sección: Procesos de Aplicación -->
+            <div class="section-card">
+                <h2 class="text-2xl font-bold text-indigo-600 mb-4 flex items-center">
+                    <span class="mr-2">📢</span> 6. Procesos y Consejo de Convivencia
+                </h2>
+                <p class="text-gray-700 mb-4">El Consejo Escolar de Convivencia (CEC) es central para la resolución de conflictos. ¿Qué más se podría hacer para promover la participación de toda la comunidad en estos procesos?</p>
+                <textarea name="comentario_consejo" rows="4" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="Escribe tus sugerencias..."></textarea>
+            </div>
+
+            <!-- Sección: Compromiso Docente y Límites -->
+            <div class="section-card">
+                <h2 class="text-2xl font-bold text-teal-600 mb-4 flex items-center">
+                    <span class="mr-2">🛡️</span> 7. Compromiso Docente y Límites
+                </h2>
+                <p class="text-gray-700 mb-4">El documento establece compromisos para los docentes y límites innegociables (abuso de poder, discriminación, violencia). ¿Qué opinas sobre estos puntos?</p>
+                <textarea name="comentario_limites" rows="4" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-teal-500" placeholder="Tu opinión es importante..."></textarea>
+            </div>
+
+            <div class="text-center mt-12">
+                <button type="submit" class="bg-blue-600 text-white font-bold py-4 px-8 rounded-full hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 transition-transform transform hover:scale-105">
+                    Enviar Formulario 🚀
+                </button>
+            </div>
+        </form>
+
+        <!-- El iframe se creará dinámicamente con JavaScript para un manejo más robusto del envío -->
+        <div id="iframe-container"></div>
+
+        <!-- Mensaje de éxito -->
+        <div id="success-message" class="hidden fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-900 bg-opacity-75 z-50">
+            <div class="bg-white p-8 rounded-3xl text-center max-w-sm">
+                <h3 class="text-2xl font-bold text-green-600 mb-4">¡Gracias por tu valiosa contribución! 🎉</h3>
+                <p class="text-gray-700">Tu opinión ha sido enviada exitosamente. Contribuirás a fortalecer la comunidad educativa.</p>
+                <button onclick="closeSuccessMessage()" class="mt-6 bg-blue-600 text-white py-2 px-6 rounded-full hover:bg-blue-700 focus:outline-none">Cerrar</button>
+            </div>
+        </div>
+
+        <!-- Sección de QR Code -->
+        <div class="section-card text-center mt-12">
+            <h2 class="text-2xl font-bold text-pink-600 mb-4 flex items-center justify-center">
+                <span class="mr-2">🔗</span> Comparte el formulario
+            </h2>
+            <p class="text-gray-700 mb-4">Escanea este código QR para acceder al formulario en cualquier dispositivo.</p>
+            <canvas id="qr-code" class="mx-auto rounded-xl border-8 border-white shadow-lg"></canvas>
+            <p class="mt-4 text-gray-500">Puedes hacer clic derecho y "Guardar imagen como..."</p>
+        </div>
+    </div>
+
+    <script>
+        // *** INSTRUCCIONES IMPORTANTES PARA GOOGLE APPS SCRIPT ***
+        //
+        // 1. Ve a Google Sheets y crea una nueva hoja de cálculo.
+        // 2. Haz clic en 'Extensiones' > 'Apps Script'.
+        // 3. Copia y pega el siguiente código en el editor.
+        //    *RECUERDA*: La variable `e` en la función `doPost(e)` es un objeto que solo tiene valor cuando la función es invocada
+        //    por una solicitud web (por ejemplo, el envío de un formulario). Si intentas ejecutar `doPost`
+        //    manualmente desde el editor, la variable `e` estará vacía y causará el error "Cannot read properties of undefined".
+        //    Simplemente ignora ese error y continúa con la publicación.
+        //
+        //    CÓDIGO PARA APPS SCRIPT:
+        //    function doPost(e) {
+        //      var sheetId = 'ID_DE_TU_HOJA_DE_CÁLCULO_AQUÍ'; // <-- ¡Reemplaza este ID!
+        //      var sheet = SpreadsheetApp.openById(sheetId).getSheetByName('Respuestas');
+        //      if (!sheet) {
+        //        sheet = SpreadsheetApp.openById(sheetId).insertSheet('Respuestas');
+        //        var headerRow = ['Fecha', 'Nombre y Apellido', 'Rol', 'Comentario Introducción', 'Comentario Convivencia', 'Comentario Derechos', 'Comentario Obligaciones', 'Comentario Sanciones', 'Comentario Consejo', 'Comentario Límites'];
+        //        sheet.appendRow(headerRow);
+        //      }
+        //      var data = e.parameter;
+        //      var newRow = [new Date(), data.nombre, data.rol, data.comentario_introduccion, data.comentario_convivencia, data.comentario_derechos, data.comentario_obligaciones, data.comentario_sanciones, data.comentario_consejo, data.comentario_limites];
+        //      sheet.appendRow(newRow);
+        //      return ContentService.createTextOutput(JSON.stringify({result: 'success', message: 'Data logged successfully'})).setMimeType(ContentService.MimeType.JSON);
+        //    }
+        //
+        // 4. Guarda el proyecto de Apps Script.
+        // 5. Publica la aplicación web: 'Implementar' > 'Nueva implementación' > 'Seleccionar tipo' > 'Aplicación web' > 'Cualquier persona' > 'Implementar'.
+        // 6. Copia la URL de la aplicación web que te da Google Apps Script y pégala aquí, reemplazando el placeholder de abajo.
+
+        const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbyGEqJHUGaLrNKZOG7psApYaS0AjAzt-4hhKpnWWmdwXA-1Y7jgrbzGlQLSXg0UMCLcIw/exec'; // <--- ¡Importante! Asegúrate de que esta es la URL completa de tu implementación web.
+
+        const form = document.getElementById('aec-form');
+        const successMessage = document.getElementById('success-message');
+        const submitButton = form.querySelector('button[type="submit"]');
+        const qrCodeCanvas = document.getElementById('qr-code');
+
+        function showSuccess() {
+            successMessage.classList.remove('hidden');
+            form.reset();
+            submitButton.disabled = false;
+            submitButton.innerHTML = 'Enviar Formulario 🚀';
+        }
+
+        function closeSuccessMessage() {
+            successMessage.classList.add('hidden');
+        }
+
+        function generateQRCode() {
+            try {
+                const qr = new QRious({
+                    element: qrCodeCanvas,
+                    value: window.location.href,
+                    size: 256,
+                    padding: 10,
+                    level: 'H' // Aumenta la corrección de errores
+                });
+            } catch (error) {
+                console.error('Error al generar el código QR:', error);
+            }
+        }
+
+        // Función que maneja el envío del formulario
+        form.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevenimos el envío por defecto para controlarlo nosotros
+
+            // Deshabilitar botón para evitar envíos múltiples
+            submitButton.disabled = true;
+            submitButton.innerHTML = 'Enviando... ⏳';
+
+            // Crear un iframe dinámicamente
+            const iframe = document.createElement('iframe');
+            const iframeId = 'hidden-iframe-' + new Date().getTime();
+            iframe.name = iframeId;
+            iframe.style.display = 'none';
+            document.getElementById('iframe-container').appendChild(iframe);
+
+            // Cuando el iframe termine de cargar (es decir, Google respondió), mostramos el éxito
+            iframe.onload = function() {
+                console.log('Respuesta recibida del script de Google.');
+                showSuccess();
+                // Limpiamos el iframe después de usarlo
+                setTimeout(() => iframe.remove(), 100);
+            };
+
+            // Apuntamos el formulario al nuevo iframe y lo enviamos
+            form.target = iframeId;
+            form.action = GOOGLE_SHEETS_URL;
+            form.submit();
+        });
+
+        // Inicializar la página cuando el DOM esté listo
+        document.addEventListener('DOMContentLoaded', function() {
+            generateQRCode();
+        });
+
+    </script>
+</body>
+</html>
