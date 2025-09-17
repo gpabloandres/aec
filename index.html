@@ -154,36 +154,8 @@
     </div>
 
     <script>
-        // *** INSTRUCCIONES IMPORTANTES PARA GOOGLE APPS SCRIPT ***
-        //
-        // 1. Ve a Google Sheets y crea una nueva hoja de cálculo.
-        // 2. Haz clic en 'Extensiones' > 'Apps Script'.
-        // 3. Copia y pega el siguiente código en el editor.
-        //    *RECUERDA*: La variable `e` en la función `doPost(e)` es un objeto que solo tiene valor cuando la función es invocada
-        //    por una solicitud web (por ejemplo, el envío de un formulario). Si intentas ejecutar `doPost`
-        //    manualmente desde el editor, la variable `e` estará vacía y causará el error "Cannot read properties of undefined".
-        //    Simplemente ignora ese error y continúa con la publicación.
-        //
-        //    CÓDIGO PARA APPS SCRIPT:
-        //    function doPost(e) {
-        //      var sheetId = 'ID_DE_TU_HOJA_DE_CÁLCULO_AQUÍ'; // <-- ¡Reemplaza este ID!
-        //      var sheet = SpreadsheetApp.openById(sheetId).getSheetByName('Respuestas');
-        //      if (!sheet) {
-        //        sheet = SpreadsheetApp.openById(sheetId).insertSheet('Respuestas');
-        //        var headerRow = ['Fecha', 'Nombre y Apellido', 'Rol', 'Comentario Introducción', 'Comentario Convivencia', 'Comentario Derechos', 'Comentario Obligaciones', 'Comentario Sanciones', 'Comentario Consejo', 'Comentario Límites'];
-        //        sheet.appendRow(headerRow);
-        //      }
-        //      var data = e.parameter;
-        //      var newRow = [new Date(), data.nombre, data.rol, data.comentario_introduccion, data.comentario_convivencia, data.comentario_derechos, data.comentario_obligaciones, data.comentario_sanciones, data.comentario_consejo, data.comentario_limites];
-        //      sheet.appendRow(newRow);
-        //      return ContentService.createTextOutput(JSON.stringify({result: 'success', message: 'Data logged successfully'})).setMimeType(ContentService.MimeType.JSON);
-        //    }
-        //
-        // 4. Guarda el proyecto de Apps Script.
-        // 5. Publica la aplicación web: 'Implementar' > 'Nueva implementación' > 'Seleccionar tipo' > 'Aplicación web' > 'Cualquier persona' > 'Implementar'.
-        // 6. Copia la URL de la aplicación web que te da Google Apps Script y pégala aquí, reemplazando el placeholder de abajo.
-
-        const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbyGEqJHUGaLrNKZOG7psApYaS0AjAzt-4hhKpnWWmdwXA-1Y7jgrbzGlQLSXg0UMCLcIw/exec'; // <--- ¡Importante! Asegúrate de que esta es la URL completa de tu implementación web.
+        
+        const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbyTOLiiWIQZXBN-vOyLCWthi7-A5UD6s7MNMxoboDYM7R_y6SK3vnBuz5AdxgtU69IX6Q/exec'; // <--- ¡Importante! Asegúrate de que esta es la URL completa de tu implementación web.
 
         const form = document.getElementById('aec-form');
         const successMessage = document.getElementById('success-message');
