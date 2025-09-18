@@ -25,17 +25,15 @@
     </style>
 </head>
 <body class="bg-gray-100 p-8">
-
     <div class="container mx-auto">
         <header class="text-center mb-12">
             <h1 class="text-4xl font-bold text-gray-800 mb-2">Acuerdos Escolares de Convivencia (AEC)</h1>
             <p class="text-xl text-gray-600">Colegio Técnico Provincial "Antonio Martín Marte"</p>
             <p class="text-md text-gray-500 mt-4">✍️ Tu opinión es fundamental para construir un mejor futuro juntos. ¡Gracias por tu participación!</p>
         </header>
-
-        <!-- El formulario se envía ahora a través de un iframe para evitar la redirección -->
-        <form id="aec-form" class="space-y-8" method="POST" target="hidden-iframe" netlify>
-            <!-- Información del Participante -->
+        
+        <!-- El formulario se envía ahora a un iframe para evitar la redirección -->
+        <form id="aec-form" class="space-y-8" action="/submit" method="post" target="hidden-iframe">
             <div class="section-card">
                 <h2 class="text-2xl font-bold text-blue-600 mb-4 flex items-center">
                     <span class="mr-2">🧑‍🏫</span> Datos de contacto
@@ -57,19 +55,14 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Sección: Introducción -->
+            
             <div class="section-card">
                 <h2 class="text-2xl font-bold text-green-600 mb-4 flex items-center">
                     <span class="mr-2">🌱</span> 1. Introducción
                 </h2>
-                <p class="text-gray-700 mb-4">El documento establece los AEC como una herramienta para fortalecer los vínculos desde una perspectiva democrática e inclusiva.
-                    ¿Qué opinas sobre este enfoque?
-                </p>
-                <textarea id="comentario_introduccion" name="comentario_introduccion" rows="4" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="Escribe tu opinión o sugerencia aquí..."></textarea>
+                <p class="text-gray-700 mb-4">El documento establece los AEC como una herramienta para fortalecer los vínculos desde una perspectiva democrática e inclusiva. ¿Qué opinas sobre este enfoque?</p>
+                <textarea name="comentario_introduccion" rows="4" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="Escribe tu opinión o sugerencia aquí..."></textarea>
             </div>
-
-            <!-- Sección: Convivencia basada en el Respeto -->
             <div class="section-card">
                 <h2 class="text-2xl font-bold text-yellow-600 mb-4 flex items-center">
                     <span class="mr-2">🤝</span> 2. Convivencia, Respeto e Inclusión
@@ -77,8 +70,6 @@
                 <p class="text-gray-700 mb-4">El documento promueve una convivencia construida colectivamente. ¿Qué podemos hacer para que la escucha activa y la resolución pacífica de conflictos sea parte de nuestro día a día?</p>
                 <textarea name="comentario_convivencia" rows="4" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-yellow-500" placeholder="Comparte tus ideas..."></textarea>
             </div>
-
-            <!-- Sección: Derechos -->
             <div class="section-card">
                 <h2 class="text-2xl font-bold text-purple-600 mb-4 flex items-center">
                     <span class="mr-2">⚖️</span> 3. Derechos de la Comunidad
@@ -86,8 +77,6 @@
                 <p class="text-gray-700 mb-4">Se mencionan derechos como ser tratado con respeto, expresar ideas y participar en decisiones. ¿Hay algún derecho que te parezca más importante o que crees que falta?</p>
                 <textarea name="comentario_derechos" rows="4" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500" placeholder="Escribe tus comentarios aquí..."></textarea>
             </div>
-
-            <!-- Sección: Obligaciones -->
             <div class="section-card">
                 <h2 class="text-2xl font-bold text-red-600 mb-4 flex items-center">
                     <span class="mr-2">🎯</span> 4. Obligaciones de la Comunidad
@@ -95,8 +84,6 @@
                 <p class="text-gray-700 mb-4">Se invita a la comunidad a respetar, escuchar y asumir sus roles. ¿Qué obligación consideras que es la más difícil de cumplir y cómo podemos apoyarnos mutuamente para lograrlo?</p>
                 <textarea name="comentario_obligaciones" rows="4" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-500" placeholder="Tu perspectiva es valiosa..."></textarea>
             </div>
-
-            <!-- Sección: Sanciones -->
             <div class="section-card">
                 <h2 class="text-2xl font-bold text-cyan-600 mb-4 flex items-center">
                     <span class="mr-2">💡</span> 5. Las Sanciones
@@ -104,8 +91,6 @@
                 <p class="text-gray-700 mb-4">El documento define las sanciones como herramientas pedagógicas, no como castigos. ¿Qué ejemplos concretos de sanciones pedagógicas se podrían implementar?</p>
                 <textarea name="comentario_sanciones" rows="4" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-cyan-500" placeholder="Comparte tus ideas aquí..."></textarea>
             </div>
-
-            <!-- Sección: Procesos de Aplicación -->
             <div class="section-card">
                 <h2 class="text-2xl font-bold text-indigo-600 mb-4 flex items-center">
                     <span class="mr-2">📢</span> 6. Procesos y Consejo de Convivencia
@@ -113,8 +98,6 @@
                 <p class="text-gray-700 mb-4">El Consejo Escolar de Convivencia (CEC) es central para la resolución de conflictos. ¿Qué más se podría hacer para promover la participación de toda la comunidad en estos procesos?</p>
                 <textarea name="comentario_consejo" rows="4" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="Escribe tus sugerencias..."></textarea>
             </div>
-
-            <!-- Sección: Compromiso Docente y Límites -->
             <div class="section-card">
                 <h2 class="text-2xl font-bold text-teal-600 mb-4 flex items-center">
                     <span class="mr-2">🛡️</span> 7. Compromiso Docente y Límites
@@ -122,7 +105,7 @@
                 <p class="text-gray-700 mb-4">El documento establece compromisos para los docentes y límites innegociables (abuso de poder, discriminación, violencia). ¿Qué opinas sobre estos puntos?</p>
                 <textarea name="comentario_limites" rows="4" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-teal-500" placeholder="Tu opinión es importante..."></textarea>
             </div>
-
+ 
             <div class="text-center mt-12">
                 <button type="submit" class="bg-blue-600 text-white font-bold py-4 px-8 rounded-full hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 transition-transform transform hover:scale-105">
                     Enviar Formulario 🚀
@@ -154,9 +137,6 @@
     </div>
 
     <script>
-        
-        const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbyTOLiiWIQZXBN-vOyLCWthi7-A5UD6s7MNMxoboDYM7R_y6SK3vnBuz5AdxgtU69IX6Q/exec'; // <--- ¡Importante! Asegúrate de que esta es la URL completa de tu implementación web.
-
         const form = document.getElementById('aec-form');
         const successMessage = document.getElementById('success-message');
         const submitButton = form.querySelector('button[type="submit"]');
@@ -175,7 +155,7 @@
 
         function generateQRCode() {
             try {
-                const qr = new QRious({
+                new QRious({
                     element: qrCodeCanvas,
                     value: window.location.href,
                     size: 256,
@@ -187,40 +167,31 @@
             }
         }
 
-        // Función que maneja el envío del formulario
         form.addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevenimos el envío por defecto para controlarlo nosotros
+            event.preventDefault();
 
-            // Deshabilitar botón para evitar envíos múltiples
             submitButton.disabled = true;
             submitButton.innerHTML = 'Enviando... ⏳';
 
-            // Crear un iframe dinámicamente
             const iframe = document.createElement('iframe');
             const iframeId = 'hidden-iframe-' + new Date().getTime();
             iframe.name = iframeId;
             iframe.style.display = 'none';
             document.getElementById('iframe-container').appendChild(iframe);
 
-            // Cuando el iframe termine de cargar (es decir, Google respondió), mostramos el éxito
             iframe.onload = function() {
-                console.log('Respuesta recibida del script de Google.');
+                console.log('Respuesta recibida del backend.');
                 showSuccess();
-                // Limpiamos el iframe después de usarlo
                 setTimeout(() => iframe.remove(), 100);
             };
 
-            // Apuntamos el formulario al nuevo iframe y lo enviamos
             form.target = iframeId;
-            form.action = GOOGLE_SHEETS_URL;
             form.submit();
         });
 
-        // Inicializar la página cuando el DOM esté listo
         document.addEventListener('DOMContentLoaded', function() {
             generateQRCode();
         });
-
     </script>
 </body>
 </html>
