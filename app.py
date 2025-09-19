@@ -1,13 +1,17 @@
 # -*- coding: utf-8 -*-
 # Importa los módulos necesarios de Flask y Python
+import os
 import sqlite3
 import csv
 import io
 from datetime import datetime
 from flask import Flask, request, g, redirect, url_for, Response, render_template
 
+# --- Configuración de la aplicación y la base de datos ---
+app = Flask(__name__)
 # Define el nombre del archivo de la base de datos SQLite
-DATABASE = 'respuestas_aec.db'
+basedir = os.path.abspath(os.path.dirname(__file__))
+DATABASE = os.path.join(basedir, 'respuestas_aec.db')
 
 # Define la aplicación de Flask
 app = Flask(__name__)
